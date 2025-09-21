@@ -4,11 +4,11 @@ const Contact = () => {
       <h2 className="text-4xl font-bold text-white mb-6">Get In Touch</h2>
       <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
         Whether you’re interested in working together or just want to say hi,
-        my inbox is always open. I’ll try my best to get back to you!
+        my inbox is always open.
       </p>
 
       <a
-        href="mailto:your.email@example.com"
+        href="mailto:sherzodtoshpulatov@protonmail.com"
         className="inline-block px-8 py-4 bg-teal-500 text-white rounded-lg shadow hover:bg-teal-600 transition"
       >
         Say Hello
