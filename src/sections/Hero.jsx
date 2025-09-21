@@ -1,27 +1,43 @@
 import { motion } from "framer-motion";
+import Resume from "../assets/resume.pdf" 
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center items-start space-y-6">
+    <section id="home" className="min-h-screen flex flex-col justify-center items-start space-y-6 relative z-10">
+      {/* Status Badge */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+      >
+        <span className="inline-flex items-center px-4 py-2 bg-slate-800/60 border border-cyan-400/40 rounded-lg text-cyan-300 text-sm font-mono backdrop-blur-sm">
+          <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 animate-pulse" />
+          &gt; STATUS: AVAILABLE
+        </span>
+      </motion.div>
+
       <motion.h1 
         className="text-5xl sm:text-7xl font-bold text-white"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Hi, I’m <span className="text-teal-400">SHerzod</span>
+        Hi, I'm <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">SHerzod</span>
       </motion.h1>
 
-      <p className="text-gray-400 max-w-xl">
-        I’m a software engineer passionate about building modern web applications.
-      </p>
+      <div className="space-y-4">
+        <p className="text-xl text-cyan-300 font-mono font-semibold">
+          &lt; FRONTEND_DEVELOPER / SOFTWARE_ENGINEER &gt;
+        </p>
+       
+      </div>
 
       <div className="flex gap-4">
-        <a href="#projects" className="px-6 py-3 bg-teal-500 text-white rounded-lg shadow hover:bg-teal-600">
-          View My Work
+        <a href="#projects"   className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold rounded-lg shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/40 transition-all flex items-center gap-3">
+          <span>&gt;</span> VIEW PROJECTS
         </a>
-        <a href="/resume.pdf" className="px-6 py-3 border border-gray-400 rounded-lg hover:bg-gray-800">
-          Download CV
+        <a href={Resume} target="_blank" className="px-8 py-4 border-2 border-cyan-400/60 text-cyan-300 font-bold rounded-lg hover:bg-cyan-400/10 hover:border-cyan-300 backdrop-blur-sm transition-all flex items-center gap-3">
+          <span>&lt;/&gt;</span> DOWNLOAD CV
         </a>
       </div>
     </section>
