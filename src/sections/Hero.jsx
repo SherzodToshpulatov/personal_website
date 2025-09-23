@@ -40,6 +40,22 @@ const Hero = () => {
           <span>&lt;/&gt;</span> DOWNLOAD CV
         </a>
       </div>
+
+
+            {/* Floating Space Console*/}
+            <motion.div
+              className="absolute bottom-8 right-1 z-30 font-mono text-xs text-indigo-400/60 bg-gray-900/60 backdrop-blur-xs rounded-lg p-4 border border-indigo-500/20 hidden md:block"
+              initial={{ opacity: 0, x: 50, y: 50 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 1, delay: 2 }}
+            >
+              <div className="text-pink-400 mb-1">// SpaceStation.js</div>
+              <div><span className="text-purple-400">const</span> <span className="text-indigo-400">astronaut</span> = &#123;</div>
+              <div className="ml-2"><span className="text-blue-400">name</span>: <span className="text-green-400">'Sherzod'</span>,</div>
+              <div className="ml-2"><span className="text-blue-400">mission</span>: <span className="text-green-400">'Code'</span>,</div>
+              <div className="ml-2"><span className="text-blue-400">destination</span>: <span className="text-green-400">'∞'</span></div>
+              <div>&#125;;</div>
+            </motion.div>
     </section>
   );
 };
