@@ -71,14 +71,14 @@ const About = () => {
             {[
               "JavaScript",
               "React",
-              "Python",
-              "Django",
               "HTML",
               "CSS",
               "Tailwind",
               "SQL",
               "PostgreSQL",
-              "Git"
+              "Git",
+              "Python",
+              "Django"
             ].map((skill, index) => (
               <motion.div
                 key={skill}

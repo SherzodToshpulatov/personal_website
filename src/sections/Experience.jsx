@@ -2,31 +2,40 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
-    role: "Software Engineer",
-    company: "Tech Company",
-    period: "2023 – Present",
+    role: "Instructor",
+    company: "Republic Technical College of Television and Radio",
+    period: "2025.09 – Present",
     status: "ACTIVE",
     description:
-      "Working on frontend development with React and Tailwind, building scalable web applications and improving UI/UX.",
-    technologies: ["React", "Tailwind", "JavaScript", "Node.js"],
-  },
-  {
-    role: "Frontend Developer Intern",
-    company: "Startup Inc.",
-    period: "2022 – 2023",
-    status: "COMPLETED",
-    description:
-      "Built responsive components, collaborated with backend team, and improved website performance by 30%.",
-    technologies: ["React", "CSS", "JavaScript", "Git"],
+      "Teaching and mentoring students in cybersecurity fundamentals, web technologies, and programming.",
+    technologies: ["HTML", "CSS", "JS", "Python"],
   },
   {
     role: "Freelance Developer",
     company: "Self-Employed",
-    period: "2020 – 2022",
+    period: "2025.07 – Present",
+    status: "ACTIVE",
+    description:
+      "Working with clients to design and develop custom websites.",
+    technologies: ["HTML", "CSS", "Tailwind", "JavaScript", "React", "Git", "REST APIs"],
+  },
+  {
+    role: "Frontend Developer",
+    company: "Jizzakh branch of the National University of Uzbekistan",
+    period: "2024.11 – 2025.09",
     status: "COMPLETED",
     description:
-      "Worked with clients worldwide to design and develop custom websites using HTML, CSS, JavaScript, and React.",
-    technologies: ["HTML", "CSS", "JavaScript", "React"],
+      "Planned and developed software solutions and web applications, while supporting and maintaining the company’s websites and digital products.",
+    technologies: ["HTML", "CSS/SCSS", "Tailwind", "JavaScript", "React", "Git", "REST APIs"],
+  },
+  {
+    role: "Technician",
+    company: "Cambridge LC",
+    period: "2023.07 – 2024.02",
+    status: "COMPLETED",
+    description:
+      "Troubleshot hardware and software issues, set up IT systems and devices, performed routine maintenance, and repaired equipment and wiring.",
+    technologies: ["Windows", "Linux", "Networking (TCP/IP, DNS, DHCP)", "Remote Desktop Tools", "Hardware Maintenance"],
   },
 ];
 
