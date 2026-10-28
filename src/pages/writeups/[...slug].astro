@@ -1,0 +1,63 @@
+---
+// Builds /writeups/ (the list) and /writeups/<name>/ (each post).
+// With no published writeups, neither page exists.
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getWriteups, formatDate } from '../../lib/writeups';
+
+export async function getStaticPaths() {
+  const writeups = await getWriteups();
+  if (writeups.length === 0) return [];
+  return [
+    { params: { slug: undefined }, props: { writeups, post: undefined } },
+    ...writeups.map((post) => ({ params: { slug: post.id }, props: { writeups, post } })),
+  ];
+}
+
+const { writeups, post } = Astro.props;
+const Content = post ? (await render(post)).Content : null;
+---
+
+{
+  post && Content ? (
+    <Base title={post.data.title} description={post.data.summary}>
+      <article class="pt-20">
+        <p class="m-0 font-mono text-[13px] text-faint">
+          <a href="/writeups/" class="text-faint no-underline">
+            ← Writeups
+          </a>
+        </p>
+        <h1 class="mt-6 mb-0 text-[2.25rem] leading-[1.15] font-semibold tracking-[-0.03em]">{post.data.title}</h1>
+        <p class="mt-3 mb-0 font-mono text-[13px] text-faint">
+          {[post.data.platform, formatDate(post.data.date), ...post.data.tags].filter(Boolean).join(' · ')}
+          {post.data.draft && <span class="text-accent"> · draft</span>}
+        </p>
+        <p class="mt-6 mb-0 text-lg text-muted">{post.data.summary}</p>
+        <div class="prose-writeup mt-10">
+          <Content />
+        </div>
+      </article>
+    </Base>
+  ) : (
+    <Base title="Writeups" description="CTF and TryHackMe writeups by Sherzod Toshpulatov.">
+      <section class="pt-20">
+        <h1 class="m-0 text-[2.25rem] leading-[1.15] font-semibold tracking-[-0.03em]">Writeups</h1>
+        <p class="mt-3 text-muted">How I solved CTF challenges and retired TryHackMe rooms, mostly web.</p>
+        <ul class="mt-12 flex list-none flex-col gap-8 p-0">
+          {writeups.map((w) => (
+            <li>
+              <a href={`/writeups/${w.id}/`} class="text-lg font-medium">
+                {w.data.title}
+              </a>
+              <p class="mt-1 mb-0 text-body">{w.data.summary}</p>
+              <p class="mt-1 mb-0 font-mono text-xs text-faint">
+                {[w.data.platform, formatDate(w.data.date)].filter(Boolean).join(' · ')}
+                {w.data.draft && <span class="text-accent"> · draft</span>}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </Base>
+  )
+}

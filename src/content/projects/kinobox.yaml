@@ -1,0 +1,14 @@
+title: kinobox
+order: 3
+status:
+  en: Live
+  uz: Ishlamoqda
+stack: [Python, aiogram 3, SQLite, Linux]
+link: https://t.me/cinemabox_uz_bot
+description:
+  en: >-
+    A production Telegram bot that delivers films by code, with premium access, an admin panel and
+    channel-subscription gating. Self-hosted on a DigitalOcean server as a systemd service.
+  uz: >-
+    Kod orqali film yuboradigan Telegram bot: premium kirish, admin panel va kanalga obuna tekshiruvi
+    bilan. DigitalOcean serverida systemd xizmati sifatida ishlaydi.

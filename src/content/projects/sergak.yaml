@@ -1,0 +1,17 @@
+# One file per project. Write the description in both languages.
+title: Sergak
+order: 1 # lower comes first
+status:
+  en: In progress · Thesis
+  uz: Jarayonda · Dissertatsiya
+stack: [Python, FastAPI, PostgreSQL, React, Recharts]
+# link: https://github.com/SherzodToshpulatov/sergak
+description:
+  en: >-
+    A web security auditing platform for .uz sites. It scans HTTP headers, cookies, TLS and DNS,
+    then compares a site's nominal score with an independent functional grade to expose
+    “security theater”: protections that are present but don't actually work.
+  uz: >-
+    .uz saytlari uchun veb-xavfsizlik auditi platformasi. U HTTP sarlavhalari, cookie, TLS va DNS
+    sozlamalarini tekshiradi, soʻng saytning nominal bahosini mustaqil funksional baho bilan solishtirib,
+    “soxta xavfsizlik”ni — mavjud, lekin amalda ishlamaydigan himoya choralarini aniqlaydi.

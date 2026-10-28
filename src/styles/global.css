@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+
+/* Colour tokens. Light is the default; dark follows the visitor's system setting. */
+:root {
+  --bg: #fcfcfb;
+  --ink: #16181d;
+  --body: #2c3038;
+  --muted: #5b6170;
+  --faint: #6b7280;
+  --rule: #e6e7ea;
+  --link-line: #c9ccd2;
+  --accent: #0f766e;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111214;
+    --ink: #ececee;
+    --body: #c9cbd1;
+    --muted: #a0a5b0;
+    --faint: #8d929d;
+    --rule: #26282d;
+    --link-line: #4a4e57;
+    --accent: #5eead4;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-rule: var(--rule);
+  --color-link-line: var(--link-line);
+  --color-accent: var(--accent);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-bg font-sans text-base leading-relaxed text-ink antialiased;
+  }
+  a {
+    @apply underline decoration-link-line underline-offset-[3px] transition-colors;
+  }
+  a:hover {
+    @apply text-accent decoration-accent;
+  }
+  :focus-visible {
+    @apply rounded-sm outline-2 outline-offset-2 outline-accent;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Long-form text for writeups. */
+.prose-writeup {
+  @apply text-body;
+}
+.prose-writeup > * + * {
+  @apply mt-5;
+}
+.prose-writeup h2 {
+  @apply mt-12 text-xl font-semibold tracking-tight text-ink;
+}
+.prose-writeup h3 {
+  @apply mt-8 text-lg font-semibold text-ink;
+}
+.prose-writeup ul {
+  @apply list-disc pl-5;
+}
+.prose-writeup ol {
+  @apply list-decimal pl-5;
+}
+.prose-writeup li + li {
+  @apply mt-1.5;
+}
+.prose-writeup code {
+  @apply rounded bg-rule/60 px-1.5 py-0.5 font-mono text-[0.875em] text-ink;
+}
+.prose-writeup pre {
+  @apply overflow-x-auto rounded-md border border-rule p-4 font-mono text-sm leading-relaxed;
+}
+.prose-writeup pre code {
+  @apply bg-transparent p-0;
+}
+.prose-writeup blockquote {
+  @apply border-l-2 border-rule pl-4 text-muted;
+}
+.prose-writeup img {
+  @apply rounded-md border border-rule;
+}

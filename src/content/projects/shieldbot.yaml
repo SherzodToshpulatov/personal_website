@@ -1,0 +1,15 @@
+title: ShieldBot
+order: 2
+status:
+  en: In progress
+  uz: Jarayonda
+stack: [aiogram 3, FastAPI, PostgreSQL, JWT, Docker]
+# link: https://github.com/SherzodToshpulatov/shieldbot
+description:
+  en: >-
+    A Telegram antivirus that scans files and links through VirusTotal, caches results by file hash,
+    and feeds a FastAPI backend with 30+ endpoints and an admin dashboard for scan history and threat stats.
+  uz: >-
+    Fayl va havolalarni VirusTotal orqali tekshiradigan Telegram antivirus boti. Natijalarni fayl xeshi
+    boʻyicha keshlaydi, ularni 30 dan ortiq endpointli FastAPI backendga hamda skanerlash tarixi va
+    tahdidlar statistikasi koʻrsatiladigan admin panelga uzatadi.

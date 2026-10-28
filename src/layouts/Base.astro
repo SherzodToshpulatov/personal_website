@@ -1,0 +1,125 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+import { dictionaries, homePath, type Lang } from '../i18n';
+import { getWriteups } from '../lib/writeups';
+
+interface Props {
+  lang?: Lang;
+  title?: string;
+  description?: string;
+  /** Set on pages that exist in every language, to show the switcher and hreflang links. */
+  translated?: boolean;
+}
+
+const { lang = 'en', title, description, translated = false } = Astro.props;
+const t = dictionaries[lang];
+const other: Lang = lang === 'en' ? 'uz' : 'en';
+const home = homePath[lang];
+
+const pageTitle = title ? `${title} · ${t.name}` : t.name;
+const metaDescription = description ?? t.description;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const hasWriteups = (await getWriteups()).length > 0;
+
+const nav = [
+  { label: t.nav.work, href: `${home}#work` },
+  { label: t.nav.research, href: `${home}#research` },
+  { label: t.nav.teaching, href: `${home}#teaching` },
+  ...(hasWriteups ? [{ label: t.nav.writeups, href: '/writeups/' }] : []),
+  { label: t.nav.contact, href: `${home}#contact` },
+];
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta name="author" content={dictionaries.en.name} />
+    <link rel="canonical" href={canonical} />
+    {
+      translated && (
+        <>
+          <link rel="alternate" hreflang="en" href={new URL(homePath.en, Astro.site)} />
+          <link rel="alternate" hreflang="uz" href={new URL(homePath.uz, Astro.site)} />
+          <link rel="alternate" hreflang="x-default" href={new URL(homePath.en, Astro.site)} />
+        </>
+      )
+    }
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={t.name} />
+    <meta property="og:locale" content={lang === 'uz' ? 'uz_UZ' : 'en_US'} />
+    <meta name="twitter:card" content="summary" />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: t.name,
+        alternateName: lang === 'en' ? dictionaries.uz.name : dictionaries.en.name,
+        url: site.url,
+        jobTitle: t.jobTitle,
+        address: { '@type': 'PostalAddress', addressLocality: 'Tashkent', addressCountry: 'UZ' },
+        alumniOf: 'Tashkent University of Information Technologies',
+        sameAs: [site.github, site.linkedin, site.tryhackme],
+      })}
+    />
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only no-underline focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-bg focus:px-3 focus:py-2"
+      >{t.skipLink}</a
+    >
+    <div class="mx-auto max-w-[760px] px-6">
+      <header class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 pt-8">
+        <a href={home} class="text-[15px] font-semibold tracking-tight no-underline">sherzod.space</a>
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <nav aria-label={lang === 'uz' ? 'Boʻlimlar' : 'Sections'}>
+            <ul class="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+              {
+                nav.map((item) => (
+                  <li>
+                    <a href={item.href} class="text-muted no-underline">
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
+          <a
+            href={homePath[other]}
+            hreflang={other}
+            lang={other}
+            class="rounded border border-rule px-2 py-0.5 font-mono text-xs text-muted no-underline hover:border-accent"
+            >{t.switchLabel}</a
+          >
+        </div>
+      </header>
+
+      <main id="main">
+        <slot />
+      </main>
+
+      <footer
+        class="mt-16 flex flex-wrap justify-between gap-x-6 gap-y-2 border-t border-rule pt-6 pb-14 font-mono text-xs text-faint"
+      >
+        <span>© {new Date().getFullYear()} {t.name}</span>
+        <span>{t.footer.location}</span>
+      </footer>
+    </div>
+  </body>
+</html>

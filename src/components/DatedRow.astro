@@ -1,0 +1,14 @@
+---
+// "Role · Organisation ............ dates" — used for experience and education.
+interface Props {
+  role: string;
+  org: string;
+  dates: string;
+}
+const { role, org, dates } = Astro.props;
+---
+
+<li class="flex flex-wrap justify-between gap-x-4">
+  <span><span class="font-medium">{role}</span><span class="text-muted"> · {org}</span></span>
+  <span class="ml-auto font-mono text-[13px] leading-[1.9] whitespace-nowrap text-faint">{dates}</span>
+</li>

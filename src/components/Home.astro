@@ -1,0 +1,181 @@
+---
+// The homepage, rendered once per language by src/pages/index.astro and src/pages/uz/index.astro.
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Section from './Section.astro';
+import DatedRow from './DatedRow.astro';
+import { site, isPlaceholder } from '../data/site';
+import { dictionaries, pick, type Lang } from '../i18n';
+import { getWriteups, formatDate } from '../lib/writeups';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = dictionaries[lang];
+const dev = import.meta.env.DEV;
+
+const projects = (await getCollection('projects', ({ data }) => dev || !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+// In production, drop research entries whose title is still a [placeholder]
+// and strip placeholder parts from detail lines. In dev, show everything.
+const researchItems = dev
+  ? t.research
+  : t.research
+      .filter((r) => !isPlaceholder(r.title))
+      .map((r) => ({
+        ...r,
+        detail: r.detail
+          .split(' · ')
+          .filter((part) => !isPlaceholder(part))
+          .join(' · '),
+      }));
+
+const links = [
+  { label: 'Email', href: `mailto:${site.email}` },
+  { label: 'GitHub', href: site.github },
+  { label: 'LinkedIn', href: site.linkedin },
+  { label: 'Telegram', href: site.telegram },
+  { label: t.cvLabel, href: site.cv },
+];
+
+const latestWriteups = (await getWriteups()).slice(0, 3);
+---
+
+<Base lang={lang} translated>
+  <section class="pt-28 pb-20">
+    <h1 class="m-0 text-[2.75rem] leading-[1.1] font-semibold tracking-[-0.03em]">{t.name}</h1>
+    <p class="mt-4 text-xl leading-snug tracking-tight text-muted">{t.tagline}</p>
+    <p class="mt-8 max-w-[600px] text-body">
+      {t.intro.before}<a href="#work">{t.intro.link}</a>{t.intro.after}
+    </p>
+    <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[13px]">
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.href} {...(l.href.startsWith('http') ? { rel: 'me noopener' } : {})}>
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-12 flex items-baseline gap-2.5 border-t border-rule pt-5 text-sm text-muted">
+      <span aria-hidden="true" class="inline-block size-[7px] shrink-0 -translate-y-px rounded-full bg-accent"></span>
+      <span>{t.now.label}: {t.now.text}</span>
+    </p>
+  </section>
+
+  <Section id="work" label={t.sections.work}>
+    <div class="flex flex-col gap-11">
+      {
+        projects.map(({ data: p }) => (
+          <article class="flex flex-col gap-2">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 class="m-0 text-lg font-semibold tracking-tight">
+                {p.link ? (
+                  <a href={p.link} class="no-underline">
+                    {p.title} <span aria-hidden="true">↗</span>
+                  </a>
+                ) : (
+                  p.title
+                )}
+              </h3>
+              <span class="font-mono text-xs text-accent">{pick(p.status, lang)}</span>
+            </div>
+            <p class="m-0 text-body">{pick(p.description, lang)}</p>
+            <p class="m-0 font-mono text-xs text-faint">{p.stack.join(' · ')}</p>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  {
+    latestWriteups.length > 0 && (
+      <Section id="writeups" label={t.sections.writeups}>
+        <ul class="m-0 flex list-none flex-col gap-6 p-0">
+          {latestWriteups.map((w) => (
+            <li>
+              <a href={`/writeups/${w.id}/`} class="font-medium" lang="en">
+                {w.data.title}
+              </a>
+              <span class="block text-sm text-muted">
+                {[w.data.platform, formatDate(w.data.date)].filter(Boolean).join(' · ')}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-6 mb-0 text-sm">
+          <a href="/writeups/">{t.sections.allWriteups}</a>
+        </p>
+      </Section>
+    )
+  }
+
+  <Section id="research" label={t.sections.research}>
+    <ul class="m-0 flex list-none flex-col gap-6 p-0">
+      {
+        researchItems.map((r) => (
+          <li class="flex flex-wrap gap-x-6 gap-y-0.5">
+            <span class="flex-[0_0_48px] font-mono text-[13px] leading-[1.9] text-faint">{r.year}</span>
+            <span class="min-w-0 flex-[999_1_300px]">
+              <span class="block font-medium">{r.href ? <a href={r.href}>{r.title}</a> : r.title}</span>
+              {r.detail && <span class="block text-sm text-muted">{r.detail}</span>}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <Section id="teaching" label={t.sections.teaching}>
+    <div class="flex flex-col gap-7">
+      {
+        t.teaching.places.map((place) => (
+          <div>
+            <p class="m-0 font-medium">{place.name}</p>
+            <p class="mt-0.5 mb-0 text-muted">{place.detail}</p>
+          </div>
+        ))
+      }
+      <p class="m-0 text-body">{t.teaching.note}</p>
+    </div>
+  </Section>
+
+  <Section label={t.sections.experience}>
+    <ul class="m-0 flex list-none flex-col gap-3.5 p-0">
+      {t.experience.map((e) => <DatedRow {...e} />)}
+    </ul>
+  </Section>
+
+  <Section label={t.sections.education}>
+    <ul class="m-0 flex list-none flex-col gap-3.5 p-0">
+      {t.education.map((e) => <DatedRow {...e} />)}
+    </ul>
+  </Section>
+
+  <Section label={t.sections.practice}>
+    <p class="m-0 text-body">{t.practice.intro}</p>
+    <dl class="mt-5 mb-0 grid grid-cols-[112px_minmax(0,1fr)] gap-x-4 gap-y-2 text-[15px]">
+      <dt class="font-mono text-[13px] leading-[1.8] text-faint">TryHackMe</dt>
+      <dd class="m-0 text-body"><a href={site.tryhackme}>toshpulatov ↗</a></dd>
+      {
+        t.practice.rows.map((row) => (
+          <>
+            <dt class="font-mono text-[13px] leading-[1.8] text-faint">{row.label}</dt>
+            <dd class="m-0 text-body">{row.value}</dd>
+          </>
+        ))
+      }
+    </dl>
+  </Section>
+
+  <section id="contact" class="scroll-mt-8 border-t border-rule pt-[72px]">
+    <h2 class="m-0 text-[1.75rem] font-semibold tracking-[-0.02em]">{t.contact.heading}</h2>
+    <p class="mt-3 max-w-[520px] text-muted">{t.contact.text}</p>
+    <p class="mt-5 text-lg"><a href={`mailto:${site.email}`}>{site.email}</a></p>
+  </section>
+</Base>
