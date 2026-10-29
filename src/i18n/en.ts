@@ -12,7 +12,7 @@ export const en = {
   skipLink: 'Skip to content',
   switchLabel: 'Oʻzbekcha',
 
-  nav: { work: 'Work', research: 'Research', teaching: 'Teaching', writeups: 'Writeups', contact: 'Contact' },
+  nav: { work: 'Work', research: 'Research', writeups: 'Writeups', contact: 'Contact' },
 
   intro: {
     before:
@@ -29,7 +29,6 @@ export const en = {
     writeups: 'Writeups',
     allWriteups: 'All writeups',
     research: 'Research & talks',
-    teaching: 'Teaching',
     experience: 'Experience',
     education: 'Education',
     practice: 'Practice',
@@ -56,31 +55,32 @@ export const en = {
     },
   ],
 
-  teaching: {
-    places: [
-      { name: 'DataCamp Academy', detail: 'Computer literacy · since 2026' },
-      {
-        name: 'Republic Technical College of Television and Radio',
-        detail: 'Information Security, Database Management, Programming Fundamentals, Web Design · 2025 – 2026',
-      },
-      {
-        name: 'Tashkent University of Information Technologies',
-        detail: 'Teaching internship · Network Security labs with Wireshark, iptables and Nmap',
-      },
-    ],
-    note: 'I write my own materials: a Python course built around security examples, and forensics labs on Autopsy, Redline and a Cowrie SSH honeypot.',
-  },
-
   experience: [
-    { role: 'IT instructor', org: 'DataCamp Academy', dates: '2026 –' },
-    { role: 'Instructor', org: 'Republic Technical College of TV and Radio', dates: '2025 – 2026' },
+    {
+      role: 'IT instructor',
+      org: 'DataCamp Academy',
+      dates: '2026 –',
+      detail: 'Computer literacy courses at a private IT learning centre.',
+    },
+    {
+      role: 'Instructor',
+      org: 'Republic Technical College of TV and Radio',
+      dates: '2025 – 2026',
+      detail:
+        'Taught Information Security, Database Management, Programming Fundamentals and Web Design. Wrote my own materials: a Python course built around security examples, and forensics labs on Autopsy, Redline and a Cowrie SSH honeypot.',
+    },
     { role: 'Freelance web developer', org: 'Self-employed', dates: '2025 –' },
     { role: 'Web developer', org: 'National University of Uzbekistan, Jizzakh branch', dates: '2024 – 2025' },
     { role: 'IT technician', org: 'Cambridge LC', dates: '2023 – 2024' },
   ],
 
   education: [
-    { role: 'M.S. Cyber Security', org: 'TUIT', dates: '2025 – 2027' },
+    {
+      role: 'M.S. Cyber Security',
+      org: 'TUIT',
+      dates: '2025 – 2027',
+      detail: 'Teaching internship: Network Security labs with Wireshark, iptables and Nmap.',
+    },
     { role: 'B.S. Computer Engineering', org: 'TUIT', dates: '2019 – 2023' },
   ],
 

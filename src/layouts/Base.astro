@@ -25,7 +25,6 @@ const hasWriteups = (await getWriteups()).length > 0;
 const nav = [
   { label: t.nav.work, href: `${home}#work` },
   { label: t.nav.research, href: `${home}#research` },
-  { label: t.nav.teaching, href: `${home}#teaching` },
   ...(hasWriteups ? [{ label: t.nav.writeups, href: '/writeups/' }] : []),
   { label: t.nav.contact, href: `${home}#contact` },
 ];

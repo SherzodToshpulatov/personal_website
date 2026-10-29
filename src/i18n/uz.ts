@@ -13,7 +13,7 @@ export const uz: Dict = {
   skipLink: 'Asosiy mazmunga oʻtish',
   switchLabel: 'English',
 
-  nav: { work: 'Ishlar', research: 'Tadqiqot', teaching: 'Oʻqituvchilik', writeups: 'Yechimlar', contact: 'Aloqa' },
+  nav: { work: 'Ishlar', research: 'Tadqiqot', writeups: 'Yechimlar', contact: 'Aloqa' },
 
   intro: {
     before:
@@ -30,7 +30,6 @@ export const uz: Dict = {
     writeups: 'Yechimlar',
     allWriteups: 'Barcha yechimlar (ingliz tilida)',
     research: 'Tadqiqot va maʼruzalar',
-    teaching: 'Oʻqituvchilik',
     experience: 'Ish tajribasi',
     education: 'Taʼlim',
     practice: 'Amaliyot',
@@ -57,32 +56,32 @@ export const uz: Dict = {
     },
   ],
 
-  teaching: {
-    places: [
-      { name: 'DataCamp Academy', detail: 'Kompyuter savodxonligi · 2026-yildan' },
-      {
-        name: 'Respublika televideniya va radio texnikumi',
-        detail:
-          'Axborot xavfsizligi, Maʼlumotlar bazasini boshqarish, Dasturlash asoslari, Veb-dizayn · 2025 – 2026',
-      },
-      {
-        name: 'Muhammad al-Xorazmiy nomidagi Toshkent axborot texnologiyalari universiteti',
-        detail: 'Ilmiy-pedagogik amaliyot · Wireshark, iptables va Nmap bilan Tarmoq xavfsizligi laboratoriyalari',
-      },
-    ],
-    note: 'Oʻquv materiallarini oʻzim tayyorlayman: xavfsizlik misollariga asoslangan Python kursi hamda Autopsy, Redline va Cowrie SSH honeypot boʻyicha kompyuter kriminalistikasi laboratoriya ishlari.',
-  },
-
   experience: [
-    { role: 'IT oʻqituvchi', org: 'DataCamp Academy', dates: '2026 –' },
-    { role: 'Oʻqituvchi', org: 'Respublika televideniya va radio texnikumi', dates: '2025 – 2026' },
+    {
+      role: 'IT oʻqituvchi',
+      org: 'DataCamp Academy',
+      dates: '2026 –',
+      detail: 'Xususiy IT oʻquv markazida kompyuter savodxonligi kurslari.',
+    },
+    {
+      role: 'Oʻqituvchi',
+      org: 'Respublika televideniya va radio texnikumi',
+      dates: '2025 – 2026',
+      detail:
+        'Axborot xavfsizligi, Maʼlumotlar bazasini boshqarish, Dasturlash asoslari va Veb-dizayn fanlaridan dars berdim. Oʻquv materiallarini oʻzim tayyorladim: xavfsizlik misollariga asoslangan Python kursi hamda Autopsy, Redline va Cowrie SSH honeypot boʻyicha kriminalistika laboratoriya ishlari.',
+    },
     { role: 'Frilanser veb-dasturchi', org: 'Mustaqil', dates: '2025 –' },
     { role: 'Veb-dasturchi', org: 'Oʻzbekiston Milliy universiteti Jizzax filiali', dates: '2024 – 2025' },
     { role: 'IT texnik', org: 'Cambridge LC', dates: '2023 – 2024' },
   ],
 
   education: [
-    { role: 'Magistratura, Kiberxavfsizlik', org: 'TATU', dates: '2025 – 2027' },
+    {
+      role: 'Magistratura, Kiberxavfsizlik',
+      org: 'TATU',
+      dates: '2025 – 2027',
+      detail: 'Ilmiy-pedagogik amaliyot: Wireshark, iptables va Nmap bilan Tarmoq xavfsizligi laboratoriyalari.',
+    },
     { role: 'Bakalavriat, Kompyuter injiniringi', org: 'TATU', dates: '2019 – 2023' },
   ],
 

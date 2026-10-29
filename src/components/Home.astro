@@ -131,20 +131,6 @@ const latestWriteups = (await getWriteups()).slice(0, 3);
     </ul>
   </Section>
 
-  <Section id="teaching" label={t.sections.teaching}>
-    <div class="flex flex-col gap-7">
-      {
-        t.teaching.places.map((place) => (
-          <div>
-            <p class="m-0 font-medium">{place.name}</p>
-            <p class="mt-0.5 mb-0 text-muted">{place.detail}</p>
-          </div>
-        ))
-      }
-      <p class="m-0 text-body">{t.teaching.note}</p>
-    </div>
-  </Section>
-
   <Section label={t.sections.experience}>
     <ul class="m-0 flex list-none flex-col gap-3.5 p-0">
       {t.experience.map((e) => <DatedRow {...e} />)}

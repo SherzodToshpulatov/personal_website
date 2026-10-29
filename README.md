@@ -18,7 +18,7 @@ The site has two homepages: English at `/` and Uzbek at `/uz/`. Writeups are Eng
 | To change… | Edit |
 | --- | --- |
 | Email, CV path, social links | `src/data/site.ts` |
-| Any homepage wording (tagline, "Now" line, research, teaching, experience…) | `src/i18n/en.ts` **and** `src/i18n/uz.ts` |
+| Any homepage wording (tagline, "Now" line, research, experience…) | `src/i18n/en.ts` **and** `src/i18n/uz.ts` |
 | Projects | one YAML file each in `src/content/projects/` |
 | Writeups | one Markdown file each in `src/content/writeups/` |
 | CV | replace `public/Sherzod_Toshpulatov_CV.pdf` |
