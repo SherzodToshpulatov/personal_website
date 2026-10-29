@@ -13,7 +13,7 @@ export const uz: Dict = {
   skipLink: 'Asosiy mazmunga oʻtish',
   switchLabel: 'English',
 
-  nav: { work: 'Ishlar', research: 'Tadqiqot', writeups: 'Yechimlar', contact: 'Aloqa' },
+  nav: { work: 'Ishlar', research: 'Tadqiqot', experience: 'Tajriba', writeups: 'Yechimlar', contact: 'Aloqa' },
 
   intro: {
     before:

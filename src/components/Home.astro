@@ -131,7 +131,7 @@ const latestWriteups = (await getWriteups()).slice(0, 3);
     </ul>
   </Section>
 
-  <Section label={t.sections.experience}>
+  <Section id="experience" label={t.sections.experience}>
     <ul class="m-0 flex list-none flex-col gap-3.5 p-0">
       {t.experience.map((e) => <DatedRow {...e} />)}
     </ul>

@@ -12,7 +12,7 @@ export const en = {
   skipLink: 'Skip to content',
   switchLabel: 'Oʻzbekcha',
 
-  nav: { work: 'Work', research: 'Research', writeups: 'Writeups', contact: 'Contact' },
+  nav: { work: 'Work', research: 'Research', experience: 'Experience', writeups: 'Writeups', contact: 'Contact' },
 
   intro: {
     before:
